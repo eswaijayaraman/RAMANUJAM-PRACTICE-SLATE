@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramanujan's Slate | இராமானுஜன் சிலேட் - Math Practice Test</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Google Fonts: Inter & Noto Sans Tamil for crisp bilingual rendering -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Tamil', 'sans-serif'],
+            tamil: ['Noto Sans Tamil', 'Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-sky-50 via-indigo-50 to-amber-50 text-slate-800 font-sans antialiased selection:bg-indigo-200 selection:text-indigo-900">
+
+  <!-- Top Header Bar -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-indigo-100 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand Logo & Title -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 to-blue-500 text-white flex items-center justify-center shadow-md shrink-0">
+          <!-- Slate / Math Icon SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-extrabold text-indigo-950 leading-tight">
+            Ramanujan's Slate
+          </h1>
+          <p class="text-xs sm:text-sm font-semibold text-indigo-600 font-tamil leading-tight">
+            இராமானுஜன் சிலேட் • கணிதப் பயிற்சித் தேர்வு
+          </p>
+        </div>
+      </div>
+
+      <!-- Language Mode Toggle -->
+      <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200" role="group" aria-label="Language Mode">
+        <button type="button" onclick="setLanguageMode('bilingual')" id="lang-btn-bilingual"
+          class="lang-toggle-btn px-2.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm">
+          தமிழ் + EN
+        </button>
+        <button type="button" onclick="setLanguageMode('tamil')" id="lang-btn-tamil"
+          class="lang-toggle-btn px-2.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900">
+          தமிழ்
+        </button>
+        <button type="button" onclick="setLanguageMode('english')" id="lang-btn-english"
+          class="lang-toggle-btn px-2.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900">
+          English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-4 py-6 sm:py-10">
+
+    <!-- ==================== SCREEN 1: WELCOME & STUDENT ENTRY ==================== -->
+    <section id="start-screen" class="bg-white rounded-3xl shadow-xl shadow-indigo-100/70 border border-indigo-100 p-6 sm:p-10 transition-all">
+      <!-- Intro Banner -->
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-amber-100 text-amber-800 border border-amber-200 mb-4">
+          <span>✨</span>
+          <span class="bilingual-inline" data-en="Classes 1 to 8 • Practice Test" data-ta="1 முதல் 8 ஆம் வகுப்பு வரை • மாதிரித் தேர்வு">
+            1 முதல் 8 ஆம் வகுப்பு வரை • Classes 1 to 8 Practice Test
+          </span>
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
+          Welcome to Ramanujan's Slate!
+        </h2>
+        <p class="text-base sm:text-lg font-bold text-indigo-700 font-tamil mb-3">
+          இராமானுஜன் சிலேட் கணிதப் பயிற்சிக்கு நல்வரவு!
+        </p>
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+          No login or registration needed. Enter your name, choose your class (1st to 8th Standard), and solve 9 fun math questions across 3 categories. Score <strong class="text-emerald-700">60% or above</strong> to qualify for the second level!
+        </p>
+        <p class="text-xs sm:text-sm text-slate-500 font-tamil mt-1.5">
+          உள்நுழைவு தேவையில்லை. உங்கள் பெயர் மற்றும் வகுப்பைத் தேர்ந்தெடுத்து 9 கேள்விகளுக்கு விடையளிக்கவும். 60% அல்லது அதற்கு மேல் மதிப்பெண் பெற்றால் அடுத்த நிலைக்குச் செல்லலாம்!
+        </p>
+      </div>
+
+      <!-- Validation Alert Box (Replaces alert()) -->
+      <div id="start-error-box" class="hidden max-w-xl mx-auto mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-rose-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <div class="text-sm font-medium" id="start-error-text"></div>
+      </div>
+
+      <!-- Student Entry Form -->
+      <form id="start-form" onsubmit="handleStartQuiz(event)" class="max-w-xl mx-auto space-y-6">
+        <!-- Student Name Input -->
+        <div>
+          <label for="student-name" class="block text-sm sm:text-base font-bold text-slate-800 mb-2">
+            Student Name / <span class="font-tamil text-indigo-700">மாணவர் பெயர்</span> <span class="text-rose-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="student-name"
+            placeholder="Enter your name / உங்கள் பெயரை உள்ளிடவும்"
+            autocomplete="off"
+            class="w-full px-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none text-base sm:text-lg font-medium transition-all"
+          />
+        </div>
+
+        <!-- Class / Standard Selection Grid (1st to 8th Standard) -->
+        <div>
+          <label class="block text-sm sm:text-base font-bold text-slate-800 mb-2">
+            Select Your Class / <span class="font-tamil text-indigo-700">உங்கள் வகுப்பைத் தேர்ந்தெடுக்கவும்</span> <span class="text-rose-500">*</span>
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="grade-grid">
+            <!-- Buttons injected cleanly via JS or static markup; static markup ensures immediate visibility -->
+            <button type="button" onclick="selectGrade(1)" data-grade="1"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 1</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">1 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800">Level 1</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(2)" data-grade="2"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 2</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">2 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800">Level 1</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(3)" data-grade="3"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 3</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">3 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800">Level 1</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(4)" data-grade="4"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 4</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">4 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Level 2</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(5)" data-grade="5"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 5</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">5 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Level 2</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(6)" data-grade="6"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 6</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">6 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Level 2</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(7)" data-grade="7"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 7</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">7 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-purple-100 text-purple-800">Level 3</span>
+            </button>
+
+            <button type="button" onclick="selectGrade(8)" data-grade="8"
+              class="grade-btn p-3 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/50 text-center transition-all flex flex-col items-center justify-center gap-0.5">
+              <span class="text-base font-extrabold text-slate-900">Class 8</span>
+              <span class="text-xs font-semibold text-indigo-700 font-tamil">8 ஆம் வகுப்பு</span>
+              <span class="mt-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-purple-100 text-purple-800">Level 3</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Level Info Preview Pill -->
+        <div id="selected-level-preview" class="hidden p-4 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-between gap-3">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-indigo-600">Assigned Test Level / ஒதுக்கப்பட்ட நிலை</p>
+            <p id="preview-level-title" class="text-sm sm:text-base font-extrabold text-indigo-950 mt-0.5"></p>
+          </div>
+          <span class="px-3 py-1 rounded-xl bg-white text-indigo-700 font-bold text-xs sm:text-sm shadow-sm border border-indigo-100">
+            9 Questions • 3 Categories
+          </span>
+        </div>
+
+        <!-- Start Test Button -->
+        <button type="submit"
+          class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 active:scale-[0.99] text-white font-extrabold text-base sm:text-lg shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2.5">
+          <span>Start Practice Test / தேர்வைத் தொடங்கு</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- ==================== SCREEN 2: ACTIVE QUIZ ==================== -->
+    <section id="quiz-screen" class="hidden space-y-5">
+      <!-- Student & Level Context Strip -->
+      <div class="bg-white rounded-2xl shadow-sm border border-indigo-100 p-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 font-extrabold flex items-center justify-center text-lg" id="avatar-initial">
+            S
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 font-medium">Student / மாணவர்</p>
+            <p class="text-sm sm:text-base font-extrabold text-slate-900" id="display-student-name">Student Name</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="display-grade-badge" class="px-3 py-1.5 rounded-xl bg-sky-100 text-sky-900 font-bold text-xs sm:text-sm">
+            Class 1
+          </span>
+          <span id="display-level-badge" class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white font-bold text-xs sm:text-sm shadow-sm">
+            Level 1 (Classes 1–3)
+          </span>
+        </div>
+      </div>
+
+      <!-- Progress Bar & Question Navigator -->
+      <div class="bg-white rounded-2xl shadow-sm border border-indigo-100 p-4 sm:p-5">
+        <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-700 mb-2">
+          <span id="progress-label">Question 1 of 9 / கேள்வி 1 / 9</span>
+          <span id="answered-count-label" class="text-indigo-600">0 of 9 Answered</span>
+        </div>
+        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+          <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full transition-all duration-300" style="width: 11.11%"></div>
+        </div>
+
+        <!-- Quick Question Jump Dots -->
+        <div class="flex items-center justify-between gap-1.5 mt-4 overflow-x-auto pb-1" id="question-dots">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-3xl shadow-xl shadow-indigo-100/60 border border-indigo-100 p-6 sm:p-8">
+        <!-- Category Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm font-bold mb-5">
+          <span>📚</span>
+          <span id="question-category-badge">Category 1: Number Sense</span>
+        </div>
+
+        <!-- Question Text (Bilingual / Tamil / English) -->
+        <div id="question-text-container" class="space-y-2.5 mb-7">
+          <h3 id="question-en" class="text-lg sm:text-2xl font-extrabold text-slate-900 leading-snug">
+            Question text in English
+          </h3>
+          <p id="question-ta" class="text-base sm:text-xl font-bold text-indigo-800 font-tamil leading-relaxed">
+            தமிழ் கேள்வி இங்கே தோன்றும்
+          </p>
+        </div>
+
+        <!-- 4 Multiple Choice Option Cards -->
+        <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Inline Unanswered Warning Box -->
+        <div id="quiz-warning-box" class="hidden mt-5 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm font-semibold flex items-center gap-2.5">
+          <span>⚠️</span>
+          <span id="quiz-warning-text"></span>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button type="button" id="prev-btn" onclick="prevQuestion()"
+            class="px-5 py-3.5 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 font-bold text-sm sm:text-base transition-all disabled:opacity-40 disabled:pointer-events-none flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Previous / முந்தைய</span>
+          </button>
+
+          <button type="button" id="next-btn" onclick="nextQuestion()"
+            class="px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base shadow-md shadow-indigo-200 transition-all flex items-center gap-2">
+            <span>Next / அடுத்து</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <button type="button" id="submit-btn" onclick="submitQuiz()"
+            class="hidden px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-200 transition-all flex items-center gap-2">
+            <span>Submit Test / தேர்வைச் சமர்ப்பி</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SCREEN 3: RESULTS & ANSWER REVIEW ==================== -->
+    <section id="result-screen" class="hidden space-y-6">
+      <!-- Score & Qualification Banner Card -->
+      <div class="bg-white rounded-3xl shadow-xl shadow-indigo-100/70 border border-indigo-100 p-6 sm:p-10 text-center">
+        <!-- Student Metadata Pill -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-bold mb-5">
+          <span id="result-student-meta">Student • Class 5 • Level 2</span>
+        </div>
+
+        <!-- Score Circle / Stat Cards -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-5 max-w-lg mx-auto mb-7">
+          <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100">
+            <p class="text-xs font-bold text-indigo-600 uppercase">Marks / மதிப்பெண்</p>
+            <p id="result-marks" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 mt-1">7 / 9</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+            <p class="text-xs font-bold text-sky-600 uppercase">Percentage / சதவீதம்</p>
+            <p id="result-percentage" class="text-2xl sm:text-3xl font-extrabold text-sky-950 mt-1">78%</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-100">
+            <p class="text-xs font-bold text-amber-700 uppercase">Pass Mark / தேர்ச்சி</p>
+            <p class="text-2xl sm:text-3xl font-extrabold text-amber-950 mt-1">60%</p>
+          </div>
+        </div>
+
+        <!-- Dynamic Qualification Banner (>= 60% vs < 60%) -->
+        <div id="qualification-banner" class="max-w-2xl mx-auto p-6 rounded-3xl border-2 text-left sm:text-center transition-all">
+          <div class="text-4xl mb-2" id="qualification-emoji">🎉</div>
+          <h3 id="qualification-msg-en" class="text-lg sm:text-2xl font-extrabold leading-snug mb-2">
+            Congratulations! You scored 78% and you can go to the second level.
+          </h3>
+          <p id="qualification-msg-ta" class="text-base sm:text-xl font-bold font-tamil leading-relaxed">
+            வாழ்த்துக்கள்! நீங்கள் 78% மதிப்பெண் பெற்றுள்ளீர்கள்; நீங்கள் இரண்டாவது நிலைக்குச் செல்லலாம்.
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3.5">
+          <!-- Proceed to Next Level Button (Shown if >= 60% and currently on Level 1 or Level 2) -->
+          <button type="button" id="next-level-btn" onclick="startNextLevel()"
+            class="hidden px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-200 transition-all flex items-center gap-2">
+            <span>Proceed to Next Level / அடுத்த நிலைக்குச் செல்லவும்</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+
+          <button type="button" onclick="retakeCurrentTest()"
+            class="px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base shadow-md shadow-indigo-200 transition-all">
+            Retake Test / மீண்டும் தேர்வு எழுத
+          </button>
+
+          <button type="button" onclick="resetToNewStudent()"
+            class="px-6 py-3.5 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 font-bold text-sm sm:text-base transition-all">
+            New Student / புதிய மாணவர்
+          </button>
+        </div>
+      </div>
+
+      <!-- Category-Wise Performance Breakdown -->
+      <div class="bg-white rounded-3xl shadow-md border border-indigo-100 p-6 sm:p-8">
+        <h4 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-4">
+          Category Performance / <span class="font-tamil text-indigo-700">பிரிவு வாரியான மதிப்பெண்கள்</span>
+        </h4>
+        <div id="category-breakdown-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Detailed Answer Review Section -->
+      <div class="bg-white rounded-3xl shadow-md border border-indigo-100 p-6 sm:p-8">
+        <h4 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-1">
+          Answer Review / <span class="font-tamil text-indigo-700">விடைகள் சரிபார்ப்பு</span>
+        </h4>
+        <p class="text-xs sm:text-sm text-slate-500 mb-6">
+          Check your selected answers and learn from the correct solutions below.
+        </p>
+        <div id="answer-review-list" class="space-y-4">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-4xl mx-auto px-4 py-6 text-center text-xs sm:text-sm text-slate-500">
+    <p>Ramanujan's Slate Practice Portal • No personal data is stored or saved.</p>
+    <p class="font-tamil mt-0.5">இராமானுஜன் சிலேட் பயிற்சித் தளம் • மாணவர் விவரங்கள் எங்கும் சேமிக்கப்படுவதில்லை.</p>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT APPLICATION LOGIC ==================== -->
+  <script>
+    /**
+     * Question Bank organized by Level (1: Classes 1-3, 2: Classes 4-6, 3: Classes 7-8)
+     * Each level has 3 categories and 3 bilingual questions per category (9 questions total).
+     */
+    const QUESTION_BANK = {
+      1: {
+        levelNumber: 1,
+        titleEn: "Level 1 (Classes 1–3)",
+        titleTa: "நிலை 1 (1 முதல் 3 ஆம் வகுப்பு வரை)",
+        questions: [
+          // Category 1: Number Sense & Counting
+          {
+            categoryEn: "Number Sense & Counting",
+            categoryTa: "எண் உணர்வு & எண்ணுதல்",
+            questionEn: "What number comes right after 49?",
+            questionTa: "49-க்கு அடுத்த எண் எது?",
+            options: [
+              { en: "48", ta: "48" },
+              { en: "50", ta: "50" },
+              { en: "51", ta: "51" },
+              { en: "40", ta: "40" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Number Sense & Counting",
+            categoryTa: "எண் உணர்வு & எண்ணுதல்",
+            questionEn: "You have 12 apples and give 5 to a friend. How many apples do you have left?",
+            questionTa: "உங்களிடம் 12 ஆப்பிள்கள் உள்ளன. அதில் 5 ஆப்பிள்களை நண்பருக்குக் கொடுத்தால், மீதம் எத்தனை ஆப்பிள்கள் இருக்கும்?",
+            options: [
+              { en: "6", ta: "6" },
+              { en: "7", ta: "7" },
+              { en: "8", ta: "8" },
+              { en: "17", ta: "17" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Number Sense & Counting",
+            categoryTa: "எண் உணர்வு & எண்ணுதல்",
+            questionEn: "Which number is greater: 78 or 87?",
+            questionTa: "எந்த எண் பெரியது: 78 அல்லது 87?",
+            options: [
+              { en: "78", ta: "78" },
+              { en: "87", ta: "87" },
+              { en: "Both are equal", ta: "இரண்டும் சமம்" },
+              { en: "None", ta: "எதுவுமில்லை" }
+            ],
+            correctIndex: 1
+          },
+          // Category 2: Shapes & Patterns
+          {
+            categoryEn: "Shapes & Patterns",
+            categoryTa: "வடிவங்கள் & அமைப்புகள்",
+            questionEn: "How many sides does a triangle have?",
+            questionTa: "ஒரு முக்கோணத்திற்கு எத்தனை பக்கங்கள் உள்ளன?",
+            options: [
+              { en: "2", ta: "2" },
+              { en: "3", ta: "3" },
+              { en: "4", ta: "4" },
+              { en: "5", ta: "5" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Shapes & Patterns",
+            categoryTa: "வடிவங்கள் & அமைப்புகள்",
+            questionEn: "Complete the pattern: 2, 4, 6, 8, ___",
+            questionTa: "தொடர் அமைப்பை நிறைவு செய்க: 2, 4, 6, 8, ___",
+            options: [
+              { en: "9", ta: "9" },
+              { en: "10", ta: "10" },
+              { en: "11", ta: "11" },
+              { en: "12", ta: "12" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Shapes & Patterns",
+            categoryTa: "வடிவங்கள் & அமைப்புகள்",
+            questionEn: "Which shape looks like a full moon or a wheel?",
+            questionTa: "முழு நிலவு அல்லது சக்கரம் போல் தோன்றும் வடிவம் எது?",
+            options: [
+              { en: "Square", ta: "சதுரம்" },
+              { en: "Triangle", ta: "முக்கோணம்" },
+              { en: "Circle", ta: "வட்டம்" },
+              { en: "Rectangle", ta: "செவ்வகம்" }
+            ],
+            correctIndex: 2
+          },
+          // Category 3: Everyday Measurement & Time
+          {
+            categoryEn: "Everyday Measurement & Time",
+            categoryTa: "அன்றாட அளவீடு & நேரம்",
+            questionEn: "How many days are there in one week?",
+            questionTa: "ஒரு வாரத்தில் எத்தனை நாட்கள் உள்ளன?",
+            options: [
+              { en: "5", ta: "5" },
+              { en: "6", ta: "6" },
+              { en: "7", ta: "7" },
+              { en: "8", ta: "8" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Everyday Measurement & Time",
+            categoryTa: "அன்றாட அளவீடு & நேரம்",
+            questionEn: "Which is heavier: 1 kg of stones or 1 kg of cotton?",
+            questionTa: "எது கனமானது: 1 கிலோ கற்களா அல்லது 1 கிலோ பஞ்சா?",
+            options: [
+              { en: "1 kg of stones", ta: "1 கிலோ கற்கள்" },
+              { en: "1 kg of cotton", ta: "1 கிலோ பஞ்சு" },
+              { en: "Both weigh the same", ta: "இரண்டும் சம எடை" },
+              { en: "Cannot say", ta: "சொல்ல முடியாது" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Everyday Measurement & Time",
+            categoryTa: "அன்றாட அளவீடு & நேரம்",
+            questionEn: "If you start reading at 4:00 PM and read for 1 hour, what time do you finish?",
+            questionTa: "நீங்கள் மாலை 4:00 மணிக்குப் படிக்கத் தொடங்கி 1 மணி நேரம் படித்தால், எப்போது முடிப்பீர்கள்?",
+            options: [
+              { en: "3:00 PM", ta: "பிற்பகல் 3:00" },
+              { en: "4:30 PM", ta: "மாலை 4:30" },
+              { en: "5:00 PM", ta: "மாலை 5:00" },
+              { en: "6:00 PM", ta: "மாலை 6:00" }
+            ],
+            correctIndex: 2
+          }
+        ]
+      },
+      2: {
+        levelNumber: 2,
+        titleEn: "Level 2 (Classes 4–6)",
+        titleTa: "நிலை 2 (4 முதல் 6 ஆம் வகுப்பு வரை)",
+        questions: [
+          // Category 1: Arithmetic & Number Properties
+          {
+            categoryEn: "Arithmetic & Number Properties",
+            categoryTa: "எண்கணிதம் & எண் பண்புகள்",
+            questionEn: "What is the product of 15 and 6?",
+            questionTa: "15 மற்றும் 6 ஆகியவற்றின் பெருக்கற்பலன் என்ன?",
+            options: [
+              { en: "80", ta: "80" },
+              { en: "85", ta: "85" },
+              { en: "90", ta: "90" },
+              { en: "95", ta: "95" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Arithmetic & Number Properties",
+            categoryTa: "எண்கணிதம் & எண் பண்புகள்",
+            questionEn: "Is 36 divisible by 4?",
+            questionTa: "36 என்ற எண் 4-ஆல் வகுப்படுமா?",
+            options: [
+              { en: "Yes", ta: "ஆம்" },
+              { en: "No", ta: "இல்லை" },
+              { en: "Only with remainder 2", ta: "மீதி 2 வரும்" },
+              { en: "Cannot divide", ta: "வகுக்க முடியாது" }
+            ],
+            correctIndex: 0
+          },
+          {
+            categoryEn: "Arithmetic & Number Properties",
+            categoryTa: "எண்கணிதம் & எண் பண்புகள்",
+            questionEn: "What is the place value of 7 in the number 4,725?",
+            questionTa: "4,725 என்ற எண்ணில் 7-இன் இடமதிப்பு என்ன?",
+            options: [
+              { en: "7", ta: "7" },
+              { en: "70", ta: "70" },
+              { en: "700", ta: "700" },
+              { en: "7000", ta: "7000" }
+            ],
+            correctIndex: 2
+          },
+          // Category 2: Fractions & Decimals
+          {
+            categoryEn: "Fractions & Decimals",
+            categoryTa: "பின்னங்கள் & தசம எண்கள்",
+            questionEn: "What fraction of a pizza is left if you eat 1 out of 4 equal slices?",
+            questionTa: "ஒரு பீட்சாவை 4 சம துண்டுகளாக வெட்டி, அதில் 1 துண்டை உண்டால், மீதமுள்ள பகுதியின் பின்னம் என்ன?",
+            options: [
+              { en: "1/4", ta: "1/4" },
+              { en: "2/4", ta: "2/4" },
+              { en: "3/4", ta: "3/4" },
+              { en: "4/4", ta: "4/4" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Fractions & Decimals",
+            categoryTa: "பின்னங்கள் & தசம எண்கள்",
+            questionEn: "Which is greater: 1/2 or 1/4?",
+            questionTa: "எது பெரியது: 1/2 அல்லது 1/4?",
+            options: [
+              { en: "1/2", ta: "1/2" },
+              { en: "1/4", ta: "1/4" },
+              { en: "Both are equal", ta: "இரண்டும் சமம்" },
+              { en: "None", ta: "எதுவுமில்லை" }
+            ],
+            correctIndex: 0
+          },
+          {
+            categoryEn: "Fractions & Decimals",
+            categoryTa: "பின்னங்கள் & தசம எண்கள்",
+            questionEn: "Write 0.5 as a fraction in simplest form.",
+            questionTa: "0.5 என்ற தசம எண்ணை எளிய பின்னமாக எழுதுக.",
+            options: [
+              { en: "1/5", ta: "1/5" },
+              { en: "1/2", ta: "1/2" },
+              { en: "5/100", ta: "5/100" },
+              { en: "2/5", ta: "2/5" }
+            ],
+            correctIndex: 1
+          },
+          // Category 3: Geometry & Logical Reasoning
+          {
+            categoryEn: "Geometry & Logical Reasoning",
+            categoryTa: "வடிவியல் & தருக்கச் சிந்தனை",
+            questionEn: "What is the perimeter of a square with each side equal to 5 cm?",
+            questionTa: "ஒரு பக்கத்தின் அளவு 5 செ.மீ கொண்ட சதுரத்தின் சுற்றளவு என்ன?",
+            options: [
+              { en: "10 cm", ta: "10 செ.மீ" },
+              { en: "15 cm", ta: "15 செ.மீ" },
+              { en: "20 cm", ta: "20 செ.மீ" },
+              { en: "25 cm", ta: "25 செ.மீ" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Geometry & Logical Reasoning",
+            categoryTa: "வடிவியல் & தருக்கச் சிந்தனை",
+            questionEn: "How many degrees are in a right angle?",
+            questionTa: "ஒரு செங்கோணத்தின் அளவு எத்தனை பாகைகள் (டிகிரி)?",
+            options: [
+              { en: "45°", ta: "45°" },
+              { en: "60°", ta: "60°" },
+              { en: "90°", ta: "90°" },
+              { en: "180°", ta: "180°" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Geometry & Logical Reasoning",
+            categoryTa: "வடிவியல் & தருக்கச் சிந்தனை",
+            questionEn: "Look at the series: 3, 6, 12, 24, ___. What comes next?",
+            questionTa: "எண் வரிசையைப் பார்க்கவும்: 3, 6, 12, 24, ___. அடுத்து வரும் எண் என்ன?",
+            options: [
+              { en: "30", ta: "30" },
+              { en: "36", ta: "36" },
+              { en: "42", ta: "42" },
+              { en: "48", ta: "48" }
+            ],
+            correctIndex: 3
+          }
+        ]
+      },
+      3: {
+        levelNumber: 3,
+        titleEn: "Level 3 (Classes 7–8)",
+        titleTa: "நிலை 3 (7 மற்றும் 8 ஆம் வகுப்பு)",
+        questions: [
+          // Category 1: Integers, Fractions & Ratios
+          {
+            categoryEn: "Integers, Fractions & Ratios",
+            categoryTa: "முழு எண்கள், பின்னங்கள் & விகிதங்கள்",
+            questionEn: "What is the value of (-8) + 5?",
+            questionTa: "(-8) + 5 ஆகியவற்றின் மதிப்பு என்ன?",
+            options: [
+              { en: "-13", ta: "-13" },
+              { en: "-3", ta: "-3" },
+              { en: "3", ta: "3" },
+              { en: "13", ta: "13" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Integers, Fractions & Ratios",
+            categoryTa: "முழு எண்கள், பின்னங்கள் & விகிதங்கள்",
+            questionEn: "Express the ratio of 20 boys to 30 girls in simplest form.",
+            questionTa: "20 மாணவர்கள் மற்றும் 30 மாணவிகள் என்பதன் விகிதத்தை எளிய வடிவில் எழுதுக.",
+            options: [
+              { en: "20:30", ta: "20:30" },
+              { en: "3:2", ta: "3:2" },
+              { en: "2:3", ta: "2:3" },
+              { en: "1:2", ta: "1:2" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Integers, Fractions & Ratios",
+            categoryTa: "முழு எண்கள், பின்னங்கள் & விகிதங்கள்",
+            questionEn: "Find 25% of 200.",
+            questionTa: "200-இல் 25% காண்க.",
+            options: [
+              { en: "25", ta: "25" },
+              { en: "40", ta: "40" },
+              { en: "50", ta: "50" },
+              { en: "75", ta: "75" }
+            ],
+            correctIndex: 2
+          },
+          // Category 2: Algebra & Equations
+          {
+            categoryEn: "Algebra & Equations",
+            categoryTa: "இயற்கணிதம் & சமன்பாடுகள்",
+            questionEn: "If x + 9 = 17, what is the value of x?",
+            questionTa: "x + 9 = 17 எனில், x-இன் மதிப்பு என்ன?",
+            options: [
+              { en: "6", ta: "6" },
+              { en: "7", ta: "7" },
+              { en: "8", ta: "8" },
+              { en: "26", ta: "26" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Algebra & Equations",
+            categoryTa: "இயற்கணிதம் & சமன்பாடுகள்",
+            questionEn: "Simplify: 4a + 3b - 2a + b.",
+            questionTa: "சுருக்குக: 4a + 3b - 2a + b.",
+            options: [
+              { en: "6a + 4b", ta: "6a + 4b" },
+              { en: "2a + 4b", ta: "2a + 4b" },
+              { en: "2a + 2b", ta: "2a + 2b" },
+              { en: "6a + 2b", ta: "6a + 2b" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Algebra & Equations",
+            categoryTa: "இயற்கணிதம் & சமன்பாடுகள்",
+            questionEn: "Write an algebraic expression for \"5 more than twice a number y\".",
+            questionTa: "\"y என்ற எண்ணின் இருமடங்கை விட 5 அதிகம்\" என்பதை இயற்கணிதக் கோவையாக எழுதுக.",
+            options: [
+              { en: "5y + 2", ta: "5y + 2" },
+              { en: "2y + 5", ta: "2y + 5" },
+              { en: "2(y + 5)", ta: "2(y + 5)" },
+              { en: "y + 10", ta: "y + 10" }
+            ],
+            correctIndex: 1
+          },
+          // Category 3: Mensuration & Data / Logic
+          {
+            categoryEn: "Mensuration & Data / Logic",
+            categoryTa: "அளவியல் & தரவு / தர்க்கம்",
+            questionEn: "Find the area of a rectangle with length 10 cm and breadth 4 cm.",
+            questionTa: "நீளம் 10 செ.மீ மற்றும் அகலம் 4 செ.மீ கொண்ட செவ்வகத்தின் பரப்பளவு காண்க.",
+            options: [
+              { en: "14 cm²", ta: "14 ச.செ.மீ" },
+              { en: "28 cm²", ta: "28 ச.செ.மீ" },
+              { en: "40 cm²", ta: "40 ச.செ.மீ" },
+              { en: "44 cm²", ta: "44 ச.செ.மீ" }
+            ],
+            correctIndex: 2
+          },
+          {
+            categoryEn: "Mensuration & Data / Logic",
+            categoryTa: "அளவியல் & தரவு / தர்க்கம்",
+            questionEn: "What is the sum of the interior angles of a triangle?",
+            questionTa: "ஒரு முக்கோணத்தின் உட்கோணங்களின் கூடுதல் என்ன?",
+            options: [
+              { en: "90°", ta: "90 பாகைகள்" },
+              { en: "180°", ta: "180 பாகைகள்" },
+              { en: "270°", ta: "270 பாகைகள்" },
+              { en: "360°", ta: "360 பாகைகள்" }
+            ],
+            correctIndex: 1
+          },
+          {
+            categoryEn: "Mensuration & Data / Logic",
+            categoryTa: "அளவியல் & தரவு / தர்க்கம்",
+            questionEn: "The mean (average) of 4 numbers is 10. What is the sum of those 4 numbers?",
+            questionTa: "4 எண்களின் சராசரி 10 எனில், அந்த 4 எண்களின் கூடுதல் என்ன?",
+            options: [
+              { en: "14", ta: "14" },
+              { en: "20", ta: "20" },
+              { en: "30", ta: "30" },
+              { en: "40", ta: "40" }
+            ],
+            correctIndex: 3
+          }
+        ]
+      }
+    };
+
+    // Application Ephemeral State (Nothing is stored to localStorage or server)
+    let appState = {
+      languageMode: 'bilingual', // 'bilingual' | 'tamil' | 'english'
+      studentName: '',
+      selectedGrade: null,
+      activeLevel: 1,
+      currentQuestionIndex: 0,
+      userAnswers: new Array(9).fill(null),
+      isSubmitted: false
+    };
+
+    /**
+     * Maps Class (1 to 8) to Quiz Level (1, 2, or 3)
+     */
+    function getLevelForGrade(grade) {
+      if (grade >= 1 && grade <= 3) return 1;
+      if (grade >= 4 && grade <= 6) return 2;
+      return 3;
+    }
+
+    /**
+     * Switch Language Display Mode ('bilingual', 'tamil', 'english')
+     */
+    function setLanguageMode(mode) {
+      appState.languageMode = mode;
+
+      // Update header toggle button styles
+      document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'hover:text-slate-900');
+      });
+      const activeBtn = document.getElementById(`lang-btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+        activeBtn.classList.remove('text-slate-600', 'hover:text-slate-900');
+      }
+
+      // Re-render current screen if active
+      if (!document.getElementById('quiz-screen').classList.contains('hidden')) {
+        renderQuestion();
+      }
+      if (!document.getElementById('result-screen').classList.contains('hidden')) {
+        renderResults();
+      }
+    }
+
+    /**
+     * Handle Grade Selection on Start Screen
+     */
+    function selectGrade(grade) {
+      appState.selectedGrade = grade;
+      const level = getLevelForGrade(grade);
+      const levelData = QUESTION_BANK[level];
+
+      // Update visual state of grade buttons
+      document.querySelectorAll('.grade-btn').forEach(btn => {
+        const btnGrade = Number(btn.getAttribute('data-grade'));
+        if (btnGrade === grade) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50/70');
+          btn.classList.add('border-indigo-600', 'bg-indigo-50', 'ring-4', 'ring-indigo-100');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50/70');
+          btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-4', 'ring-indigo-100');
+        }
+      });
+
+      // Show assigned level preview
+      const previewBox = document.getElementById('selected-level-preview');
+      const previewTitle = document.getElementById('preview-level-title');
+      previewBox.classList.remove('hidden');
+      previewTitle.textContent = `${levelData.titleEn} • ${levelData.titleTa}`;
+
+      // Hide any validation error
+      document.getElementById('start-error-box').classList.add('hidden');
+    }
+
+    /**
+     * Validate Name & Grade and Launch Quiz
+     */
+    function handleStartQuiz(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('student-name').value.trim();
+      const errorBox = document.getElementById('start-error-box');
+      const errorText = document.getElementById('start-error-text');
+
+      if (!nameInput) {
+        errorText.textContent = "Please enter your name to begin. / தொடங்குவதற்கு உங்கள் பெயரை உள்ளிடவும்.";
+        errorBox.classList.remove('hidden');
+        document.getElementById('student-name').focus();
+        return;
+      }
+
+      if (!appState.selectedGrade) {
+        errorText.textContent = "Please select your class (Class 1 to 8). / உங்கள் வகுப்பைத் தேர்ந்தெடுக்கவும் (1 முதல் 8 வரை).";
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      errorBox.classList.add('hidden');
+      appState.studentName = nameInput;
+      appState.activeLevel = getLevelForGrade(appState.selectedGrade);
+      startQuizSession();
+    }
+
+    /**
+     * Initialize Quiz Session for current activeLevel
+     */
+    function startQuizSession() {
+      const levelData = QUESTION_BANK[appState.activeLevel];
+      appState.currentQuestionIndex = 0;
+      appState.userAnswers = new Array(levelData.questions.length).fill(null);
+      appState.isSubmitted = false;
+
+      // Populate Student Header Strip
+      document.getElementById('avatar-initial').textContent = appState.studentName.charAt(0).toUpperCase();
+      document.getElementById('display-student-name').textContent = appState.studentName;
+      document.getElementById('display-grade-badge').textContent = `Class ${appState.selectedGrade} / ${appState.selectedGrade} ஆம் வகுப்பு`;
+      document.getElementById('display-level-badge').textContent = `${levelData.titleEn}`;
+
+      // Switch screens
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.remove('hidden');
+
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Format text based on selected languageMode
+     */
+    function formatOptionText(opt) {
+      if (opt.en === opt.ta) return opt.en;
+      if (appState.languageMode === 'english') return opt.en;
+      if (appState.languageMode === 'tamil') return opt.ta;
+      return `${opt.en} / ${opt.ta}`;
+    }
+
+    /**
+     * Render Current Question, Progress, Dots, and Options
+     */
+    function renderQuestion() {
+      const levelData = QUESTION_BANK[appState.activeLevel];
+      const total = levelData.questions.length;
+      const idx = appState.currentQuestionIndex;
+      const q = levelData.questions[idx];
+
+      // Update Progress Bar & Counters
+      const answeredCount = appState.userAnswers.filter(a => a !== null).length;
+      document.getElementById('progress-label').textContent = `Question ${idx + 1} of ${total} / கேள்வி ${idx + 1} / ${total}`;
+      document.getElementById('answered-count-label').textContent = `${answeredCount} of ${total} Answered`;
+      document.getElementById('progress-bar-fill').style.width = `${((idx + 1) / total) * 100}%`;
+
+      // Render Quick Jump Dots
+      const dotsContainer = document.getElementById('question-dots');
+      dotsContainer.innerHTML = '';
+      levelData.questions.forEach((_, i) => {
+        const isCurrent = i === idx;
+        const isAnswered = appState.userAnswers[i] !== null;
+        const dotBtn = document.createElement('button');
+        dotBtn.type = 'button';
+        dotBtn.textContent = i + 1;
+        dotBtn.onclick = () => {
+          document.getElementById('quiz-warning-box').classList.add('hidden');
+          appState.currentQuestionIndex = i;
+          renderQuestion();
+        };
+
+        let classes = "w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-extrabold transition-all shrink-0 ";
+        if (isCurrent) {
+          classes += "bg-indigo-600 text-white ring-4 ring-indigo-100 scale-105";
+        } else if (isAnswered) {
+          classes += "bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200";
+        } else {
+          classes += "bg-slate-100 text-slate-600 hover:bg-slate-200";
+        }
+        dotBtn.className = classes;
+        dotsContainer.appendChild(dotBtn);
+      });
+
+      // Update Category Badge
+      const catBadge = document.getElementById('question-category-badge');
+      if (appState.languageMode === 'english') {
+        catBadge.textContent = q.categoryEn;
+      } else if (appState.languageMode === 'tamil') {
+        catBadge.textContent = q.categoryTa;
+      } else {
+        catBadge.textContent = `${q.categoryEn} • ${q.categoryTa}`;
+      }
+
+      // Update Question Prompt Visibility by Language Mode
+      const qEnEl = document.getElementById('question-en');
+      const qTaEl = document.getElementById('question-ta');
+      qEnEl.textContent = `${idx + 1}. ${q.questionEn}`;
+      qTaEl.textContent = `${idx + 1}. ${q.questionTa}`;
+
+      qEnEl.classList.toggle('hidden', appState.languageMode === 'tamil');
+      qTaEl.classList.toggle('hidden', appState.languageMode === 'english');
+
+      // Render Option Cards (A, B, C, D)
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+      const optionLetters = ['A', 'B', 'C', 'D'];
+
+      q.options.forEach((opt, optIdx) => {
+        const isSelected = appState.userAnswers[idx] === optIdx;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => selectOption(optIdx);
+
+        btn.className = isSelected
+          ? "w-full p-4 rounded-2xl border-2 border-indigo-600 bg-indigo-50/90 text-left shadow-md shadow-indigo-100 transition-all flex items-center gap-3.5"
+          : "w-full p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-300 bg-white hover:bg-slate-50 text-left transition-all flex items-center gap-3.5";
+
+        const badgeClass = isSelected
+          ? "w-9 h-9 rounded-xl bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0"
+          : "w-9 h-9 rounded-xl bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center shrink-0";
+
+        btn.innerHTML = `
+          <span class="${badgeClass}">${optionLetters[optIdx]}</span>
+          <span class="text-sm sm:text-base font-bold text-slate-800 leading-snug">${formatOptionText(opt)}</span>
+        `;
+        optionsContainer.appendChild(btn);
+      });
+
+      // Update Navigation Button States
+      document.getElementById('prev-btn').disabled = idx === 0;
+
+      const nextBtn = document.getElementById('next-btn');
+      const submitBtn = document.getElementById('submit-btn');
+      if (idx === total - 1) {
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.remove('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Save Selected Option in Ephemeral Memory
+     */
+    function selectOption(optionIndex) {
+      appState.userAnswers[appState.currentQuestionIndex] = optionIndex;
+      document.getElementById('quiz-warning-box').classList.add('hidden');
+      renderQuestion();
+    }
+
+    function prevQuestion() {
+      if (appState.currentQuestionIndex > 0) {
+        document.getElementById('quiz-warning-box').classList.add('hidden');
+        appState.currentQuestionIndex--;
+        renderQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      const total = QUESTION_BANK[appState.activeLevel].questions.length;
+      if (appState.currentQuestionIndex < total - 1) {
+        document.getElementById('quiz-warning-box').classList.add('hidden');
+        appState.currentQuestionIndex++;
+        renderQuestion();
+      }
+    }
+
+    /**
+     * Validate All Questions Answered & Calculate Final Results
+     */
+    function submitQuiz() {
+      const unansweredIdx = appState.userAnswers.findIndex(ans => ans === null);
+      if (unansweredIdx !== -1) {
+        const warningBox = document.getElementById('quiz-warning-box');
+        const warningText = document.getElementById('quiz-warning-text');
+        warningText.textContent = `Please answer Question ${unansweredIdx + 1} before submitting! / சமர்ப்பிக்கும் முன் கேள்வி ${unansweredIdx + 1}-க்கு விடையளிக்கவும்!`;
+        warningBox.classList.remove('hidden');
+        appState.currentQuestionIndex = unansweredIdx;
+        renderQuestion();
+        return;
+      }
+
+      appState.isSubmitted = true;
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+
+      renderResults();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Render Score, 60% Qualification Message, Category Breakdown & Answer Review
+     */
+    function renderResults() {
+      const levelData = QUESTION_BANK[appState.activeLevel];
+      const questions = levelData.questions;
+      const total = questions.length;
+
+      let score = 0;
+      const categoryStats = {};
+
+      questions.forEach((q, idx) => {
+        const isCorrect = appState.userAnswers[idx] === q.correctIndex;
+        if (isCorrect) score++;
+
+        const catKey = q.categoryEn;
+        if (!categoryStats[catKey]) {
+          categoryStats[catKey] = {
+            categoryEn: q.categoryEn,
+            categoryTa: q.categoryTa,
+            correct: 0,
+            total: 0
+          };
+        }
+        categoryStats[catKey].total++;
+        if (isCorrect) categoryStats[catKey].correct++;
+      });
+
+      const percentage = Math.round((score / total) * 100);
+      const isQualified = percentage >= 60;
+
+      // Update Student Meta & Score Cards
+      document.getElementById('result-student-meta').textContent =
+        `${appState.studentName} • Class ${appState.selectedGrade} (${appState.selectedGrade} ஆம் வகுப்பு) • ${levelData.titleEn}`;
+      document.getElementById('result-marks').textContent = `${score} / ${total}`;
+      document.getElementById('result-percentage').textContent = `${percentage}%`;
+
+      // Configure Qualification Banner
+      const banner = document.getElementById('qualification-banner');
+      const emoji = document.getElementById('qualification-emoji');
+      const msgEn = document.getElementById('qualification-msg-en');
+      const msgTa = document.getElementById('qualification-msg-ta');
+      const nextLevelBtn = document.getElementById('next-level-btn');
+
+      if (isQualified) {
+        banner.className = "max-w-2xl mx-auto p-6 rounded-3xl border-2 border-emerald-300 bg-emerald-50 text-emerald-950 text-left sm:text-center shadow-sm";
+        emoji.textContent = "🎉🏆";
+        msgEn.textContent = `Congratulations ${appState.studentName}! You scored ${percentage}% and you can go to the second level.`;
+        msgTa.textContent = `வாழ்த்துக்கள் ${appState.studentName}! நீங்கள் ${percentage}% மதிப்பெண் பெற்றுள்ளீர்கள்; நீங்கள் இரண்டாவது நிலைக்குச் செல்லலாம்.`;
+
+        // Show "Proceed to Next Level" button if currently in Level 1 or Level 2
+        if (appState.activeLevel < 3) {
+          nextLevelBtn.classList.remove('hidden');
+        } else {
+          nextLevelBtn.classList.add('hidden');
+        }
+      } else {
+        banner.className = "max-w-2xl mx-auto p-6 rounded-3xl border-2 border-amber-300 bg-amber-50 text-amber-950 text-left sm:text-center shadow-sm";
+        emoji.textContent = "💪📘";
+        msgEn.textContent = `Good effort ${appState.studentName}! You scored ${percentage}%. You need 60% to qualify for the second level. Try again!`;
+        msgTa.textContent = `நல்ல முயற்சி ${appState.studentName}! நீங்கள் ${percentage}% மதிப்பெண் பெற்றுள்ளீர்கள். இரண்டாவது நிலைக்குச் செல்ல 60% தேவை. மீண்டும் முயற்சிக்கவும்!`;
+        nextLevelBtn.classList.add('hidden');
+      }
+
+      // Render Category Breakdown
+      const breakdownGrid = document.getElementById('category-breakdown-grid');
+      breakdownGrid.innerHTML = '';
+      Object.values(categoryStats).forEach(stat => {
+        const card = document.createElement('div');
+        card.className = "p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <p class="text-xs sm:text-sm font-extrabold text-slate-800">${stat.categoryEn}</p>
+            <p class="text-xs font-semibold text-indigo-700 font-tamil mt-0.5">${stat.categoryTa}</p>
+          </div>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500">Score</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold ${stat.correct === stat.total ? 'bg-emerald-100 text-emerald-800' : 'bg-indigo-100 text-indigo-800'}">
+              ${stat.correct} / ${stat.total}
+            </span>
+          </div>
+        `;
+        breakdownGrid.appendChild(card);
+      });
+
+      // Render Detailed Answer Review
+      const reviewList = document.getElementById('answer-review-list');
+      reviewList.innerHTML = '';
+      questions.forEach((q, idx) => {
+        const userChoice = appState.userAnswers[idx];
+        const isCorrect = userChoice === q.correctIndex;
+        const userOptText = formatOptionText(q.options[userChoice]);
+        const correctOptText = formatOptionText(q.options[q.correctIndex]);
+
+        const item = document.createElement('div');
+        item.className = isCorrect
+          ? "p-4 sm:p-5 rounded-2xl border-2 border-emerald-200 bg-emerald-50/40"
+          : "p-4 sm:p-5 rounded-2xl border-2 border-rose-200 bg-rose-50/40";
+
+        const statusBadge = isCorrect
+          ? `<span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-extrabold">✓ Correct / சரி</span>`
+          : `<span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-extrabold">✗ Incorrect / தவறு</span>`;
+
+        const qPromptHtml = appState.languageMode === 'tamil'
+          ? `<p class="text-sm sm:text-base font-bold text-slate-900 font-tamil">${idx + 1}. ${q.questionTa}</p>`
+          : appState.languageMode === 'english'
+          ? `<p class="text-sm sm:text-base font-bold text-slate-900">${idx + 1}. ${q.questionEn}</p>`
+          : `<p class="text-sm sm:text-base font-bold text-slate-900">${idx + 1}. ${q.questionEn}</p>
+             <p class="text-xs sm:text-sm font-semibold text-indigo-800 font-tamil mt-0.5">${q.questionTa}</p>`;
+
+        item.innerHTML = `
+          <div class="flex items-start justify-between gap-3 mb-2.5">
+            <div>${qPromptHtml}</div>
+            <div class="shrink-0">${statusBadge}</div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3 text-xs sm:text-sm">
+            <div class="p-2.5 rounded-xl ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+              <span class="font-bold">Your Answer / உங்கள் விடை:</span>
+              <span class="font-extrabold ml-1">${userOptText}</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-emerald-100/70 text-emerald-950">
+              <span class="font-bold">Correct Answer / சரியான விடை:</span>
+              <span class="font-extrabold ml-1">${correctOptText}</span>
+            </div>
+          </div>
+        `;
+        reviewList.appendChild(item);
+      });
+    }
+
+    /**
+     * Advance student immediately to the next practice level (Level 1 -> 2, Level 2 -> 3)
+     */
+    function startNextLevel() {
+      if (appState.activeLevel < 3) {
+        appState.activeLevel++;
+        startQuizSession();
+      }
+    }
+
+    /**
+     * Retake the same test level with fresh answers
+     */
+    function retakeCurrentTest() {
+      startQuizSession();
+    }
+
+    /**
+     * Clear ephemeral session and return to Start Screen for a new student
+     */
+    function resetToNewStudent() {
+      appState.studentName = '';
+      appState.selectedGrade = null;
+      appState.activeLevel = 1;
+      appState.currentQuestionIndex = 0;
+      appState.userAnswers = new Array(9).fill(null);
+      appState.isSubmitted = false;
+
+      document.getElementById('student-name').value = '';
+      document.getElementById('selected-level-preview').classList.add('hidden');
+      document.getElementById('start-error-box').classList.add('hidden');
+
+      document.querySelectorAll('.grade-btn').forEach(btn => {
+        btn.classList.add('border-slate-200', 'bg-slate-50/70');
+        btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-4', 'ring-indigo-100');
+      });
+
+      document.getElementById('result-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('start-screen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
